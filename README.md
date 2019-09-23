@@ -1,1 +1,1 @@
-prestashop-module-producto-view
+prestashop-module-product
