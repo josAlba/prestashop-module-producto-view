@@ -29,7 +29,7 @@
 							<h5 style="font-weight: bold;font-size:33px;color:#7a7a7a;text-shadow: 2px 2px 5px #929292;letter-spacing: 2px;">DESCRIPCI&Oacute;N</h5>
 
 							<div>
-								<div class="rte" style="font-size:18px;text-align: left;line-height: 25px;">{$product->description_short}</div>
+								<div class="rte" style="font-size:18px;text-align: left;line-height: 25px;">{$product->description_short nofilter}</div>
 							</div>
 
 						</div>
@@ -50,7 +50,7 @@
 							<h5 style="font-weight: bold;color:#7a7a7a;font-size:33px;text-shadow: 2px 2px 5px #929292;letter-spacing: 2px;">FICHA T&Eacute;CNICA</h5>
 
 							<div>
-								<div class="rte" style="font-size:18px;">{$product->description}</div>
+								<div class="rte" style="font-size:18px;">{$product->description nofilter}</div>
 							</div>
 
 						</div>
@@ -60,7 +60,7 @@
 				</div>
 			</div>
 		</div>
-		
+		 
 		<link rel="stylesheet" href="{$jpresent_css}">
 		<script async src="{$jpresent_js}"></script>
                   
