@@ -1,0 +1,20 @@
+@media (max-width: 770px) {
+    .col-nomobil {
+        display: none;
+    }
+}
+#thumbs_list li{
+    border:none;
+}
+#thumbs_list li a.shown{
+    border:none;
+}
+#thumbs_list li a:hover, #thumbs_list li a.shown{
+    border:none;
+}
+#descripciones03{
+    text-align:center;margin-bottom:20px;
+}
+.tam-h1{
+    border-bottom:none;font-size:50px;text-shadow: 2px 2px 5px #929292;letter-spacing: 5px;
+}
