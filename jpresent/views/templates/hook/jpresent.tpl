@@ -20,7 +20,11 @@
 				
 				<div class="row" style="max-width:1200px;width:100%;">
 					<div class="col-md-6 col-sm-6 col-nomobil" style="overflow:hidden;padding-0px;">
-						<img height="100%" src="{$jpresent_imagen_png|escape:'html':'UTF-8'}" />
+						{if $jpresent_img_acti==true}
+							<img height="100%" src="{$jpresent_imagen_png|escape:'html':'UTF-8'}" />
+						{else}
+							<img height="100%" src="{$jpresent_imagen|escape:'html':'UTF-8'}" />
+						{/if}
 					</div>
 					<div class="col-md-6 col-sm-6">
 
