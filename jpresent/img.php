@@ -1,11 +1,16 @@
 <?php
 
+include(dirname(__FILE__).'/../../config/config.inc.php');
+include(dirname(__FILE__).'/jpresent.php');
+
 if(isset($_GET['t'])){
     error_reporting(E_ALL);
     ini_set('display_errors', '1');
 }else{
     header('Content-Type: image/png');
 }
+
+$saturacion = Configuration::get("JPRESENT_IMAGE_ALPHA");
 
 $img        = imagecreatefromjpeg($_GET['i']);
 $img2       = imagecreatefromjpeg($_GET['i']);
@@ -14,7 +19,7 @@ $w = imagesx($img);
 $h = imagesy($img);
 
 imagefilter($img, IMG_FILTER_NEGATE); 
-imagefilter($img,  IMG_FILTER_CONTRAST, -90);
+imagefilter($img,  IMG_FILTER_CONTRAST, -($saturacion));
 $remove     = imagecolorallocate($img, 0, 0, 0);
 imagecolortransparent($img, $remove);
 imagefilter($img,  IMG_FILTER_CONTRAST, 0);
