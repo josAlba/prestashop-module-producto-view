@@ -196,6 +196,7 @@
                 'jpresent_imagen_png'   =>$this->_path.'img.php?i='.$imagen1,
                 'jpresent_css'          => $this->_path.'css/jpresent.css',
                 'jpresent_js'           => $this->_path.'js/jpresent.js',
+                'jpresent_js_velociti'  => $this->_path.'js/velociti.js',
             ));
 
             return $this->display(__FILE__, 'jpresent.tpl');
