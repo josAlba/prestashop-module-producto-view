@@ -1,4 +1,4 @@
-<script src="{$jpresent_js_velociti}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js"></script>
 {literal}
 <!-- ScrollMagick -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
