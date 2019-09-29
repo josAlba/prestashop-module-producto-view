@@ -35,8 +35,8 @@ function tamm(){
         parametros.OriginalIF		=true;
         parametros.Original.width 	= $($('.tam').parent()).width();
         parametros.Original.height 	= $($('.tam').parent()).height();
-        if(parametros.Original.height < 500){
-            parametros.Original.height 	= 500;
+        if(parametros.Original.height < 800){
+            parametros.Original.height 	= 800;
         }
         
 
