@@ -1,3 +1,12 @@
+<script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js"></script>
+{literal}
+<!-- ScrollMagick -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.velocity.js"></script>
+<!-- ./ScrollMagick -->
+{/literal}
+
 
 		<div class="row" id="descripciones03">
 		</div>
@@ -13,21 +22,22 @@
 			</div>
 		</div>
 
-        
+		<div id="trigger1" class="spacer s0"></div>
 		<div id="descripciones01" class="tam-content" >
 
-			<div class="tam" style="background: #f7f7f7;">
+			<div id="animate" class="tam" style="background: #f7f7f7;">
 				
 				<div class="row" style="max-width:1200px;width:100%;">
 					<div class="col-md-6 col-sm-6 col-nomobil" style="overflow:hidden;padding-0px;">
-						{if $jpresent_img_acti==true}
-							<img height="100%" src="{$jpresent_imagen_png|escape:'html':'UTF-8'}" />
-						{else}
-							<img height="100%" src="{$jpresent_imagen|escape:'html':'UTF-8'}" />
-						{/if}
+						<div id="pin1" class="box2 blue">
+							{if $jpresent_img_acti==true}
+								<img height="100%" src="{$jpresent_imagen_png|escape:'html':'UTF-8'}" />
+							{else}
+								<img height="100%" src="{$jpresent_imagen|escape:'html':'UTF-8'}" />
+							{/if}
+						</div>
 					</div>
 					<div class="col-md-6 col-sm-6">
-
 						<div style="margin-top:20px;padding:10px;">
 
 							<h5 style="font-weight: bold;font-size:33px;color:#7a7a7a;text-shadow: 2px 2px 5px #929292;letter-spacing: 2px;">DESCRIPCI&Oacute;N</h5>
@@ -43,6 +53,7 @@
 			</div>
 		</div>
 
+		<div id="trigger2" class="spacer s0"></div>
 		<div id="descripciones02" class="tam-content">
 
 			<div class="tam" style="background: #f7f7f7;">
@@ -67,4 +78,24 @@
 		 
 		<link rel="stylesheet" href="{$jpresent_css}">
 		<script async src="{$jpresent_js}"></script>
-                  
+
+{literal}
+<script>
+var controller1;
+var controller2;
+var scene1;
+var scene2;
+	setTimeout(function(){
+		controller1 = new ScrollMagic.Controller();
+		scene1 = new ScrollMagic.Scene({triggerElement: "#trigger1", duration: 300})
+			.setPin("#pin1")
+			.addTo(controller1);
+	}, 2000);
+	setTimeout(function(){
+		controller2 = new ScrollMagic.Controller();
+		scene2 = new ScrollMagic.Scene({triggerElement: "#trigger2"})
+			.setVelocity("#animate", {opacity: 0}, {duration: 400})
+			.addTo(controller2);
+	}, 2200);
+</script>
+{/literal}          
