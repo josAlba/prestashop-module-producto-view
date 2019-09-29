@@ -17,6 +17,7 @@
                 'JPRESENT_TITLE',
                 'JPRESENT_SUBTITLE',
                 'JPRESENT_IMAGE_ACTIVE',
+                'JPRESENT_ANCHO_ACTIVE',
                 'JPRESENT_IMAGE_ALPHA'
             ) );
 
@@ -67,6 +68,7 @@
                     Configuration::updateValue('JPRESENT_TITLE',        $myModuleName);
                     Configuration::updateValue('JPRESENT_SUBTITLE',     Tools::getValue('SUBTITLE'));
                     Configuration::updateValue('JPRESENT_IMAGE_ACTIVE', Tools::getValue('IMAGE_ACTIVO'));
+                    Configuration::updateValue('JPRESENT_ANCHO_ACTIVE', Tools::getValue('ANCHO_ACTIVO'));
                     Configuration::updateValue('JPRESENT_IMAGE_ALPHA',  Tools::getValue('IMAGE_ALPHA'));
 
                     $output .= $this->displayConfirmation($this->l('Settings updated'));
@@ -104,6 +106,27 @@
                         'name'  => 'SUBTITLE',
                         'size'  => 20,
                         'required' => true
+                    ),
+                    array(
+                        'type' => 'html',
+                        'html_content' => '<strong>Configuracion Hook</strong><br>',
+                        'name' => 'hrseparate1',
+                    ),
+                    array(
+                        'type'  => 'checkbox',
+                        'label' => $this->l('Activar ancho automatico'),
+                        'name'  => 'ANCHO',
+                        'values' => array(
+                            'query' => $lesChoix = array(
+                              array(
+                                  'check_id' => 'ACTIVO',
+                                  'name' => $this->l('Activo'),
+                              )
+                            ),
+                            'id' => 'check_id',
+                            'name' => 'name',
+                            'desc' => $this->l('Please select')
+                        )
                     ),
                     array(
                         'type' => 'html',
@@ -174,6 +197,7 @@
             $helper->fields_value['SUBTITLE']       = Configuration::get('JPRESENT_SUBTITLE');
             $helper->fields_value['IMAGE_ACTIVO']   = Configuration::get('JPRESENT_IMAGE_ACTIVE');
             $helper->fields_value['IMAGE_ALPHA']    = Configuration::get('JPRESENT_IMAGE_ALPHA');
+            $helper->fields_value['ANCHO_ACTIVO']   = Configuration::get('JPRESENT_ANCHO_ACTIVE');
 
             return $helper->generateForm($fields_form);
         }
@@ -187,13 +211,29 @@
             $product = $this->context->controller->getProduct();
             $imagen1 = Product::getCover((int) Tools::getValue('id_product'));
             $imagen1 = $this->context->link->getImageLink($product->link_rewrite, $imagen1['id_image'], 'medium_default');
+
+            $imagenes= Db::getInstance()->executeS('SELECT id_image, id_product from `' . _DB_PREFIX_ . 'image` WHERE id_product="'.Tools::getValue('id_product').'" ');
+
+            $imagen2 ='';$i=0;
+            foreach ($imagenes as $value) {
+                $i++;
+                if($i==2){
+                    $buffero = $value['id_product'].'-'.$value['id_image'];
+                    $imagen2 = $this->context->link->getImageLink($product->link_rewrite, $buffero, 'medium_default');
+                }else{
+                    continue;
+                }
+            }
             
             $this->context->smarty->assign(array(
                 'jpresent_title'        => Configuration::get('JPRESENT_TITLE'),
                 'jpresent_subtitle'     => Configuration::get('JPRESENT_SUBTITLE'),
                 'jpresent_img_acti'     => Configuration::get('JPRESENT_IMAGE_ACTIVE'),
+                'jpresent_ancho'        => Configuration::get('JPRESENT_ANCHO_ACTIVE'),
                 'jpresent_imagen'       => $imagen1,
-                'jpresent_imagen_png'   =>$this->_path.'img.php?i='.$imagen1,
+                'jpresent_imagen2'      => $imagen2,
+                'jpresent_imagen_png'   => $this->_path.'img.php?i='.$imagen1,
+                'jpresent_imagen_png2'  => $this->_path.'img.php?i='.$imagen2,
                 'jpresent_css'          => $this->_path.'css/jpresent.css',
                 'jpresent_js'           => $this->_path.'js/jpresent.js'
             ));
