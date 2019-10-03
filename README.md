@@ -1,5 +1,7 @@
 # JPresent Modulo de prestashop
 
+## v1.0.0
+
 ## Instalación
 
 Descarga el git y dentro esta el jpresent.zip que es el modulo para prestashop.
